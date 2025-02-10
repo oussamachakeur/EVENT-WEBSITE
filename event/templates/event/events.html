@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        <br>
+        <h1 class="text-center" style="font-size: 2.5em; color: #007BFF; margin-bottom: 20px;">Events :</h1>
+        <br>
+        <center>
+        {% for event in event_list %}
+            <div class="event-card mb-5 p-4 border rounded shadow-sm" style="background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+                <h2 class="event-name text-primary mb-4" style="font-size: 2em; color: #007BFF; margin-bottom: 20px;">
+                    <strong>{{ event.name }}</strong>
+                </h2>
+
+                <ul class="list-unstyled" style="list-style: none; padding: 0;">
+                    <li style="font-size: 1.1em; color: #555; margin-bottom: 10px;">
+                        <strong>Event Date:</strong> {{ event.date }}
+                    </li>
+                    <li style="font-size: 1.1em; color: #555; margin-bottom: 10px;">
+                        <strong>Event Venue:</strong> {{ event.venue }}
+                    </li>
+                    <li style="font-size: 1.1em; color: #555; margin-bottom: 10px;">
+                        <strong>Event Website:</strong> <a href="{{ event.venue.web }}" style="color: #007BFF; text-decoration: none;">{{ event.venue.web }}</a>
+                    </li>
+                    <li style="font-size: 1.1em; color: #555; margin-bottom: 10px;">
+                        <strong>Event Manager:</strong> {{ event.manager }}
+                    </li>
+                    <li style="font-size: 1.1em; color: #555; margin-bottom: 10px;">
+                        <strong>Event Attendees:</strong>
+                        <ul style="list-style: none; padding-left: 20px; margin-top: 10px;">
+                            {% for user in event.attendees.all %}
+                                <li style="font-size: 1em; color: #777;">{{ user }}</li>
+                            {% endfor %}
+                            <a href="{% url 'update_event' event.id %}" style="font-size: 1em; color: #fff; background-color: #28a745; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
+                                Update
+                            </a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+        </center>
+    </div>
+{% endblock %}

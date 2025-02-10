@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for additional styling */
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .form-container .form-group {
+            margin-bottom: 15px;
+        }
+        .form-container .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-container .form-group input,
+        .form-container .form-group textarea,
+        .form-container .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<center>
+    <div class="form-container">
+        <h2>Form Event</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+        </form>
+    </div>
+</center>
+{% endblock %}

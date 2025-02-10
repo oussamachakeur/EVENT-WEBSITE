@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+    <br><br>
+    <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px;">{{ venue }}</h1>
+    
+    <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; margin: 0 auto;">
+        <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
+            <strong>Name:</strong> {{ venue.name }}
+        </p>
+        <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
+            <strong>Address:</strong> {{ venue.address }}
+        </p>
+        <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
+            <strong>Zip Code:</strong> {{ venue.zip_code }}
+        </p>
+        <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
+            <strong>Phone:</strong> {{ venue.phone }}
+        </p>
+        <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
+            <strong>Email:</strong> {{ venue.email }}
+        </p>
+        <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
+            <strong>Website:</strong> <a href="{{ venue.web }}" style="color: #007BFF; text-decoration: none;">{{ venue.web }}</a>
+        </p>
+    </div>
+</center>
+{% endblock %}

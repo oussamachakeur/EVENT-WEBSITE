@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Search</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007BFF;
+            height: 60px; /* Adjusted navbar height */
+            padding: 0 20px; /* Adjusted padding */
+        }
+        
+        .nav-item {
+            padding: 5px 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .nav-item:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            border-radius: 5px;
+        }
+        
+        .website-name {
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar input[type="text"] {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #0056b3;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .search-bar button:hover {
+            background-color: #004080; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <!-- Website Name -->
+        <div class="website-name">
+            My Club
+        </div>
+
+        <!-- Nav Links and Search Bar -->
+        <div class="nav-links">
+            <a href="/" class="nav-item">Home</a>
+            <a href="/Venue_form" class="nav-item">Venue Form</a>
+            <a href="/Event_form" class="nav-item">Event Form</a>
+            <a href="/events" class="nav-item">Events</a>
+            <a href="/venues" class="nav-item">Venues</a>
+
+            <!-- Search Bar -->
+            <form method="post" action="{% url 'search_venue' %}">
+                {% csrf_token %}
+                <div class="search-bar">
+                    <input type="text" name="searched" placeholder="Search..."  />
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </nav>
+</body>
+</html>
