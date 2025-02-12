@@ -6,7 +6,7 @@
         <h1 class="text-center" style="font-size: 2.5em; color: #007BFF; margin-bottom: 20px;">Events :</h1>
         <br>
         <center>
-        {% for event in event_list %}
+        {% for event in events %}
             <div class="event-card mb-5 p-4 border rounded shadow-sm" style="background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
                 <h2 class="event-name text-primary mb-4" style="font-size: 2em; color: #007BFF; margin-bottom: 20px;">
                     <strong>{{ event.name }}</strong>
@@ -34,9 +34,33 @@
                             <a href="{% url 'update_event' event.id %}" style="font-size: 1em; color: #fff; background-color: #28a745; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
                                 Update
                             </a>
+                            <a href="{% url 'delete_event' event.id %}" style="font-size: 1em; color: #fff; background-color: #e25e05; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
+                                Delete
+                            </a>
                         </ul>
                     </li>
                 </ul>
+                <br><br><br>
+                <div class="pagination" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                    {% if events.has_previous %}
+                        <a href="?page=1" style="font-size: 1em; color: #007BFF; text-decoration: none; padding: 5px 10px; border-radius: 5px; background-color: #f9f9f9; border: 1px solid #007BFF; transition: background-color 0.3s ease;">
+                            &laquo; First
+                        </a>
+                        <a href="?page={{events.previous_page_number}}" style="font-size: 1em; color: #007BFF; text-decoration: none; padding: 5px 10px; border-radius: 5px; background-color: #f9f9f9; border: 1px solid #007BFF; transition: background-color 0.3s ease;">
+                            Previous
+                        </a>
+                    {% endif %}
+                    <span style="font-size: 1em; color: #007BFF; padding: 5px 10px;">
+                        Page {{events.number}} of {{events.paginator.num_pages}}
+                    </span>
+                    {% if events.has_next %}
+                        <a href="?page={{events.next_page_number}}" style="font-size: 1em; color: #007BFF; text-decoration: none; padding: 5px 10px; border-radius: 5px; background-color: #f9f9f9; border: 1px solid #007BFF; transition: background-color 0.3s ease;">
+                            Next
+                        </a>
+                        <!-- <a href="?page={{venues.paginator.num_pages}}" style="font-size: 1em; color: #007BFF; text-decoration: none; padding: 5px 10px; border-radius: 5px; background-color: #f9f9f9; border: 1px solid #007BFF; transition: background-color 0.3s ease;">
+                            Last &raquo;
+                        </a> -->
+                    {% endif %}
             </div>
         {% endfor %}
         </center>

@@ -8,7 +8,7 @@
         <br>
         <center>
             <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; margin: 0 auto;">
-                {% for venue in venue_list %}
+                {% for venue in venues %}
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 10px; background-color: #fff; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease, box-shadow 0.2s ease;">
                         <a href="{% url 'show_venue' venue.id %}" style="font-size: 1.2em; color: #007BFF; text-decoration: none; flex-grow: 1;">
                             {{ venue }}
@@ -16,9 +16,35 @@
                         <a href="{% url 'update_venue' venue.id %}" style="font-size: 1em; color: #fff; background-color: #28a745; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
                             Update
                         </a>
+                        <a href="{% url 'delete_venue' venue.id %}" style="font-size: 1em; color: #fff; background-color: #db4c0a; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
+                            Delete
+                        </a>
                     </div>
                 {% endfor %}
-            </div>
+
+                <br><br><br>
+                <div class="pagination" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                    {% if venues.has_previous %}
+                        <a href="?page=1" style="font-size: 1em; color: #007BFF; text-decoration: none; padding: 5px 10px; border-radius: 5px; background-color: #f9f9f9; border: 1px solid #007BFF; transition: background-color 0.3s ease;">
+                            &laquo; First
+                        </a>
+                        <a href="?page={{venues.previous_page_number}}" style="font-size: 1em; color: #007BFF; text-decoration: none; padding: 5px 10px; border-radius: 5px; background-color: #f9f9f9; border: 1px solid #007BFF; transition: background-color 0.3s ease;">
+                            Previous
+                        </a>
+                    {% endif %}
+                    <span style="font-size: 1em; color: #007BFF; padding: 5px 10px;">
+                        Page {{venues.number}} of {{venues.paginator.num_pages}}
+                    </span>
+                    {% if venues.has_next %}
+                        <a href="?page={{venues.next_page_number}}" style="font-size: 1em; color: #007BFF; text-decoration: none; padding: 5px 10px; border-radius: 5px; background-color: #f9f9f9; border: 1px solid #007BFF; transition: background-color 0.3s ease;">
+                            Next
+                        </a>
+                        <!-- <a href="?page={{venues.paginator.num_pages}}" style="font-size: 1em; color: #007BFF; text-decoration: none; padding: 5px 10px; border-radius: 5px; background-color: #f9f9f9; border: 1px solid #007BFF; transition: background-color 0.3s ease;">
+                            Last &raquo;
+                        </a> -->
+                    {% endif %}
+                </div>
+            </div> 
         </center>
     </div>
 {% endblock %}

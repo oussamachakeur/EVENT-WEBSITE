@@ -15,6 +15,9 @@
                 <a href="{% url 'update_venue' venue.id %}" style="font-size: 1em; color: #fff; background-color: #28a745; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
                     Update
                 </a>
+                <a href="{% url 'delete_venue' venue.id %}" style="font-size: 1em; color: #fff; background-color: #db4c0a; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
+                    Delete
+                </a>
             </div>
             {% endfor %}
             </div>
