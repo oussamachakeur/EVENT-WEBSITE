@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for additional styling */
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Arial', sans-serif;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        .form-container input[type="text"]:focus,
+        .form-container input[type="password"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+        .form-container button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-container button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .form-container .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .form-container .form-footer a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .form-container .form-footer a:hover {
+            color: #0056b3;
+        }
+        /* Custom alert styling */
+        .alert-custom {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .alert-error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        .alert-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+    </style>
+</head>
+
+<!-- Display messages -->
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert-custom alert-{% if message.tags %}{{ message.tags }}{% else %}info{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<center>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form action="{% url 'login_user' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        
+    </div>
+</center>
+{% endblock %}

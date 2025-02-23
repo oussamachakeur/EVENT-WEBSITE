@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Event Approval</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        li {
+            font-size: 16px;
+            color: #555;
+            padding: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #0056b3;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        tr:hover {
+            background: #f1f1f1;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .submit-btn:hover {
+            background: #003d80;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <h3>Admin Dashboard</h3>
+        <ul>
+            <li><strong>Events Count:</strong> {{ events_count }}</li>
+            <li><strong>Venue Count:</strong> {{ venue_count }}</li>
+            <li><strong>Users Count:</strong> {{ users_count }}</li>
+        </ul>
+
+        <h3>Admin Event Approval</h3>
+
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Approve</th>
+                </tr>
+                {% for event in events %}
+                <tr>
+                    <td>{{ event }}</td>
+                    <td>
+                        <input type="checkbox" name="boxes" value="{{ event.id }}" {% if event.approved %}checked{% endif %}>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <button type="submit" class="submit-btn">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -3,17 +3,22 @@
 
 {% block content%}
 <center>
-    
-    <br><br><br><br><h2>Download All Venues Data from Here :</h2><br><br><br><h4>Pick a file type :</h4><br><br><br>
-    <a href="{% url 'venue_txt'%}" style="font-size: 1em; color: #fff; background-color: #6d6967; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
-        Downlaod (txt)
-    </a>
-    <a href="{% url 'venue_csv'%}" style="font-size: 1em; color: #fff; background-color: #61f586; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
-        Downlaod (csv)
-    </a>
-    <a href="{% url 'venue_PDF'%}" style="font-size: 1em; color: #fff; background-color: #e47b4b; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
-        Downlaod (PDF)
-    </a>
+    {% if user.is_authenticated %}
+        <br><br><br><br><h2>Download All Venues Data from Here :</h2><br><br><br><h4>Pick a file type :</h4><br><br><br>
+        <a href="{% url 'venue_txt'%}" style="font-size: 1em; color: #fff; background-color: #6d6967; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
+            Downlaod (txt)
+        </a>
+        <a href="{% url 'venue_csv'%}" style="font-size: 1em; color: #fff; background-color: #61f586; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
+            Downlaod (csv)
+        </a>
+        <a href="{% url 'venue_PDF'%}" style="font-size: 1em; color: #fff; background-color: #e47b4b; text-decoration: none; padding: 5px 10px; border-radius: 5px; margin-left: 10px; transition: background-color 0.3s ease;">
+            Downlaod (PDF)
+        </a>
+    {% else %}
+        <h1>Sorry you have to be login to access this page !!!</h1>
+        <a href="{% url 'login_user' %}"><H3>Login Here</H3></a>
+
+    {% endif %}
     
 </center>
 

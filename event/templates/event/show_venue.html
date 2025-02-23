@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <center>
     <br><br>
     <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px;">{{ venue }}</h1>
@@ -24,6 +25,16 @@
         <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
             <strong>Website:</strong> <a href="{{ venue.web }}" style="color: #007BFF; text-decoration: none;">{{ venue.web }}</a>
         </p>
+        <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
+            <strong>Owner:</strong> {{ venueOwner }}
+        </p>
+        <p style="font-size: 1.2em; color: #555; margin: 10px 0;">
+            <strong>Owner Email:</strong> {{ venueOwner.email }}
+        </p>
+        {% if venue.image %}
+            <img src="{{ venue.image.url }}" alt="{{ venue.name }}" style="max-width: 100%; height: auto; border-radius: 5px;" width="500"  height="500">
+        {% endif %}
     </div>
 </center>
+
 {% endblock %}

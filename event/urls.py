@@ -2,6 +2,8 @@
 from django.contrib import admin
 from django.urls import path , include
 from . import views
+
+
 urlpatterns = [
     path('<int:year>/<str:month>', views.homepage , name='homepage'),
     path('', views.homepage , name='homepage'),
@@ -19,6 +21,8 @@ urlpatterns = [
     path('venue_csv' , views.venue_csv , name='venue_csv'),
     path('venue_PDF' , views.venue_PDF , name='venue_PDF'),
     path('download_venues' , views.download_venues , name='download_venues'),
+    path('myEvent' , views.myEvent , name='myEvent'),
+    path('admin_approval' , views.admin_approval , name='admin_approval'),
 ]
 
 

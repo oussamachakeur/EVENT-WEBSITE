@@ -64,7 +64,7 @@
 <center>
     <div class="form-container">
         <h2>Update Venue :</h2>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 {{ form.as_p }}

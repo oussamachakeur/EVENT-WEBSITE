@@ -9,7 +9,7 @@ class VenueForm(forms.ModelForm):
     class Meta :
         model = Venue
         #fields='__all__'
-        fields=('name','address','zip_code','phone' ,'web' , 'email')
+        fields=('name','address','zip_code','phone' ,'web' , 'email', 'image')
 
         widgets= {
             'name':forms.TextInput(attrs={'class':'form-control'}),
@@ -26,6 +26,20 @@ class EventForm(forms.ModelForm):
     class Meta :
         model = Event
         #fields='__all__'
+        fields=('name','date','venue','description' )
+
+        widgets= {
+            'name':forms.TextInput(attrs={'class':'form-control'}),
+            'date':forms.TextInput(attrs={'class':'form-control','type': 'date'}),
+            'venue': forms.Select(attrs={'class': 'form-control'}),  
+            'description':forms.TextInput(attrs={'class':'form-control'}) ,
+        }
+
+class EventFormAdmin(forms.ModelForm):
+
+    class Meta :
+        model = Event
+        #fields='__all__'
         fields=('name','date','venue','manager' ,'description' )
 
         widgets= {
@@ -36,3 +50,4 @@ class EventForm(forms.ModelForm):
             'description':forms.TextInput(attrs={'class':'form-control'}) ,
         }
 
+       
